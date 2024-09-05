@@ -21,6 +21,8 @@
 #define DEF_VEL_COEF    0.992     /**< Default velocity coefficient (%) */
 #define DEF_UNIT_DIST   10        /**< Distance traveled in one movement */
 
+const bool debug        = false;   /**< Debug print to display (Serial.begin(<baud>) is required) */
+
 // Servo properties
 struct ServoProperties {
   uint16_t    SERVO_TYPE;         // Servo motor model number. Specify from a constant (e.g. ST_MG996R)

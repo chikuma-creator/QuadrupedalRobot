@@ -18,7 +18,7 @@
 #define ST_MG996R_CR    1011      /**< TowerPro MG996R 360 degree */
 
 #define PWM_CHANNELS    16        /**< PWM Servo Driver Channel Count */
-#define DEF_VEL_COEF    0.985     /**< Default velocity coefficient (%) */
+#define DEF_VEL_COEF    0.992     /**< Default velocity coefficient (%) */
 #define DEF_UNIT_DIST   10        /**< Distance traveled in one movement */
 
 // Servo properties

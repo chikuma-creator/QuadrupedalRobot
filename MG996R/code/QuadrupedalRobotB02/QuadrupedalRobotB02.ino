@@ -1,5 +1,3 @@
-#include "arduino_secrets.h"
-
 #include "RobotServo.h"
 
 #define SERVO_FREQ          50      /* Servo Driver Frequency */
@@ -7,18 +5,18 @@
 #define MG996R_SERVOMID     1500
 #define MG996R_SERVOMAX     2500
 
-const uint8_t   LEG1_SERVO1_PIN   =  9; // å³åè¶³ã®æ ¹æ¬
-const uint8_t   LEG1_SERVO2_PIN   = 10; // å³åè¶³ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG1_SERVO3_PIN   = 11; // å³åè¶³ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG2_SERVO1_PIN   = 13; // å³å¾è¶³ã®æ ¹æ¬
-const uint8_t   LEG2_SERVO2_PIN   = 14; // å³åå¾ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG2_SERVO3_PIN   = 15; // å³åå¾ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG3_SERVO1_PIN   =  6; // å·¦åè¶³ã®æ ¹æ¬
-const uint8_t   LEG3_SERVO2_PIN   =  5; // å·¦åè¶³ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG3_SERVO3_PIN   =  4; // å·¦åè¶³ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG4_SERVO1_PIN   =  2; // å·¦å¾è¶³ã®æ ¹æ¬
-const uint8_t   LEG4_SERVO2_PIN   =  1; // å·¦åå¾ã®ç¬¬ï¼é¢ç¯
-const uint8_t   LEG4_SERVO3_PIN   =  0; // å·¦åå¾ã®ç¬¬ï¼é¢ç¯
+const uint8_t   LEG1_SERVO1_PIN   =  9; // 右前足の根本
+const uint8_t   LEG1_SERVO2_PIN   = 10; // 右前足の第１関節
+const uint8_t   LEG1_SERVO3_PIN   = 11; // 右前足の第２関節
+const uint8_t   LEG2_SERVO1_PIN   = 13; // 右後足の根本
+const uint8_t   LEG2_SERVO2_PIN   = 14; // 右前後の第１関節
+const uint8_t   LEG2_SERVO3_PIN   = 15; // 右前後の第２関節
+const uint8_t   LEG3_SERVO1_PIN   =  6; // 左前足の根本
+const uint8_t   LEG3_SERVO2_PIN   =  5; // 左前足の第１関節
+const uint8_t   LEG3_SERVO3_PIN   =  4; // 左前足の第２関節
+const uint8_t   LEG4_SERVO1_PIN   =  2; // 左後足の根本
+const uint8_t   LEG4_SERVO2_PIN   =  1; // 左前後の第１関節
+const uint8_t   LEG4_SERVO3_PIN   =  0; // 左前後の第２関節
 
 RobotServoController controller = RobotServoController(0x40);
 
@@ -29,7 +27,7 @@ const uint8_t SERVO_PIN[12] = {
   LEG4_SERVO1_PIN, LEG4_SERVO2_PIN, LEG4_SERVO3_PIN
 };
 
-// éåã®ãµã¤ãºãåå¾ãã¦ãã
+// 配列のサイズを取得しておく
 size_t sizeX = sizeof(SERVO_PIN) / sizeof(SERVO_PIN[0]);
 
 
@@ -72,7 +70,6 @@ void loop() {
     } else {
       Serial.print("Set Goal: "); Serial.println(goal_count + 1);
       for (int x=0; x<sizeX; x++) {
-        Serial.print("SetGoal PIN:"); Serial.print(SERVO_PIN[x]);
         controller.setGoal(SERVO_PIN[x], SERVO_POS[goal_count][x]);
       }
       Serial.println();

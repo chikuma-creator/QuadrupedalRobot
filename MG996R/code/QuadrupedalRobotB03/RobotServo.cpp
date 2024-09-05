@@ -106,11 +106,13 @@ void RobotServo::setGoal(uint16_t goal_pos, float vel_coef, float initial_speed,
     m_speed = 0;
   }
   m_prev_speed = 0;
-  Serial.print(" Start: "); Serial.print((int)m_start_pos);
-  Serial.print(" Goal: "); Serial.print((int)m_goal_pos);
-  Serial.print(" Move Count: "); Serial.print((int)m_move_count);
-  Serial.print(" Distance: "); Serial.print((int)move_dist);
-  Serial.print(" Initial speed: "); Serial.println((double)m_speed);
+  if (debug) {
+    Serial.print(" Start: "); Serial.print((int)m_start_pos);
+    Serial.print(" Goal: "); Serial.print((int)m_goal_pos);
+    Serial.print(" Move Count: "); Serial.print((int)m_move_count);
+    Serial.print(" Distance: "); Serial.print((int)move_dist);
+    Serial.print(" Initial speed: "); Serial.print((double)m_speed);
+  }
 }
 
 void RobotServo::setReverse(float vel_coef) {
@@ -140,6 +142,11 @@ void RobotServo::run(float vel_coef) {
     m_pos = (float)m_current_pos;
   }
   m_pwm->writeMicroseconds(m_servo_pin, m_current_pos);
+  if (debug) {
+    Serial.print(" (PIN:"); Serial.print((int)m_servo_pin);
+    Serial.print(", POS:"); Serial.print((int)m_current_pos);
+    Serial.print(")");
+  }
 }
 
 void RobotServo::stop() {
@@ -227,7 +234,13 @@ void RobotServoController::setGoal(uint8_t pin, uint16_t goal_pos, float initial
     _vel_coef = m_vel_coef;
   }
   if (m_servos[pin]) {
+    if (debug) {
+      Serial.print("SetGoal PIN:"); Serial.print((int)pin);
+    }
     m_servos[pin]->setGoal(goal_pos, _vel_coef, initial_speed);
+    if (debug) {
+      Serial.print(" VEL_COEF:"); Serial.println((double)_vel_coef);
+    }
   }
 }
 
@@ -244,14 +257,23 @@ boolean RobotServoController::isReachGoal() {
 }
 
 void RobotServoController::run(float vel_coef) {
+  if (debug) {
+    Serial.print("RUN SERVO MOTERS: {");
+  }
   for (int i=0; i<PWM_CHANNELS; i++) {
     float _vel_coef = vel_coef;
     if (_vel_coef == 0.0) {
       _vel_coef = m_vel_coef;
     }
     if (m_servos[i]) {
+      if (i != 0 && debug) {
+        Serial.print(",");
+      }
       m_servos[i]->run(_vel_coef);
     }
+  }
+  if (debug) {
+    Serial.println("}");
   }
 }
 

@@ -8,15 +8,15 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40);
 #define MG90S_SERVOMID    1500
 #define MG90S_SERVOMAX    2300
 
-const uint8_t   LEG1_SERVO1_PIN   = 10; // 右前足の根本
-const uint8_t   LEG1_SERVO2_PIN   = 11; // 右前足の第１関節
-const uint8_t   LEG1_SERVO3_PIN   = 12; // 右前足の第２関節
+const uint8_t   LEG1_SERVO1_PIN   =  9; // 右前足の根本
+const uint8_t   LEG1_SERVO2_PIN   = 10; // 右前足の第１関節
+const uint8_t   LEG1_SERVO3_PIN   = 11; // 右前足の第２関節
 const uint8_t   LEG2_SERVO1_PIN   = 13; // 右後足の根本
 const uint8_t   LEG2_SERVO2_PIN   = 14; // 右前後の第１関節
 const uint8_t   LEG2_SERVO3_PIN   = 15; // 右前後の第２関節
-const uint8_t   LEG3_SERVO1_PIN   =  5; // 左前足の根本
-const uint8_t   LEG3_SERVO2_PIN   =  4; // 左前足の第１関節
-const uint8_t   LEG3_SERVO3_PIN   =  3; // 左前足の第２関節
+const uint8_t   LEG3_SERVO1_PIN   =  6; // 左前足の根本
+const uint8_t   LEG3_SERVO2_PIN   =  5; // 左前足の第１関節
+const uint8_t   LEG3_SERVO3_PIN   =  4; // 左前足の第２関節
 const uint8_t   LEG4_SERVO1_PIN   =  2; // 左後足の根本
 const uint8_t   LEG4_SERVO2_PIN   =  1; // 左前後の第１関節
 const uint8_t   LEG4_SERVO3_PIN   =  0; // 左前後の第２関節

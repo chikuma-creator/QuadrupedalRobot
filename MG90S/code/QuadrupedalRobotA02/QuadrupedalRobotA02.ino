@@ -1,9 +1,9 @@
 #include "RobotServo.h"
 
 #define SERVO_FREQ        50      /* Servo Driver Frequency */
-#define MG90S_SERVOMIN    1000
+#define MG90S_SERVOMIN     500
 #define MG90S_SERVOMID    1500
-#define MG90S_SERVOMAX    2000
+#define MG90S_SERVOMAX    2500
 
 const uint8_t   LEG1_SERVO1_PIN   =  9; // 右前足の根本
 const uint8_t   LEG1_SERVO2_PIN   = 10; // 右前足の第１関節
@@ -33,7 +33,7 @@ size_t sizeX = sizeof(SERVO_PIN) / sizeof(SERVO_PIN[0]);
 
 const uint16_t SERVO_POS[][12] = {
   {1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500}, 
-  {1500, 1500, 2500, 1500, 1500, 2500, 1500, 1500, 2500, 1500, 2000, 2500},
+  {1500, 1500, 2500, 1500, 1500, 2500, 1500, 1500, 2500, 1500, 1500, 2500},
   {1500, 1000, 2000, 1500, 1000, 2000, 1500, 1000, 2000, 1500, 1000, 2000},
   {1500,  500, 1500, 1500,  500, 1500, 1500,  500, 1500, 1500,  500, 1500},
   {1500, 1000, 2000, 1500, 1000, 2000, 1500, 1000, 2000, 1500, 1000, 2000},
@@ -69,8 +69,7 @@ void loop() {
     } else {
       Serial.print("Set Goal: "); Serial.println(goal_count + 1);
       for (int x=0; x<sizeX; x++) {
-        Serial.print("SetGoal PIN:"); Serial.print(SERVO_PIN[x]);
-        controller.setGoal(SERVO_PIN[x], SERVO_POS[goal_count][x]);
+        controller.setGoal(SERVO_PIN[x], SERVO_POS[goal_count][x], 30.0, 1.0);
       }
       Serial.println();
       delay(500);
